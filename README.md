@@ -1,3 +1,8 @@
+# React & Boostrap
+
+podeis seguir la documentacion de Bootstrap & React en el siguiente enlace: https://react-bootstrap.github.io
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
