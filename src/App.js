@@ -4,6 +4,8 @@ import {Home} from './pages/home';
 import { RegisterAbout, RegisterAge, RegisterPhotos, RegisterUbication, RegisterUser } from './pages/register';
 import { Login } from './pages/login';
 
+
+
 function App() {
   return (
     <div>
