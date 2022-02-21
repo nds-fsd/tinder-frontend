@@ -11,4 +11,3 @@ export default {
     "img4": Photo3,
     "img5": Photo4,
 }
-
