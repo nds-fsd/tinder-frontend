@@ -1,4 +1,4 @@
-import { React, useReducer, useState } from 'react';
+import { React } from 'react';
 import { Col, Row, Container, Button, Card, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
