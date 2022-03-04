@@ -3,6 +3,9 @@ import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/home';
 import { RegisterAbout, RegisterAge, RegisterPhotos, RegisterUbication, RegisterUser } from './pages/register';
 import { Login } from './pages/login';
+import { UserProfile } from './pages/userProfile';
+import { EditProfile } from './pages/editProfile';
+import { Settings } from './pages/settings';
 
 
 
@@ -17,6 +20,10 @@ function App() {
         <Route path="/register/about" element={<RegisterAbout />} />
         <Route path="/register/photos" element={<RegisterPhotos />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/user" element={<UserProfile />} />
+        <Route path="/profile" element={<EditProfile />} />
+        <Route path="/settings" element={<Settings />} />
+
       </Routes>
     </div>
   );

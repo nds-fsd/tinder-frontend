@@ -3,16 +3,20 @@ import { Col, Row, Container, Button, Card, Carousel, Form } from 'react-bootstr
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ButtonAction from '../../components/buttonAction/buttonAction';
 import './editProfile.css';
+import Header from '../../components/header/header';
 
 export function EditProfile() {
     return (
         <Container>
+            <Header />
             <div className='wrapper'>
-                <Row>
-                    <p>Can wait to meet you</p>
-                    <span>Editar Galeria</span>
+                <Row className='Center'>
+                    <Col fluid='md'>
+                        <h3>Can wait to meet you</h3>
+                        <span>Editar Galeria</span>
+                    </Col>
                 </Row>
-                <Row className='Gallery'>
+                <Row className='Gallery extraMargin'>
                     <Col class="col-lg-4 col-md-12 mb-4 mb-lg-0">
                         <img
                             src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
@@ -58,16 +62,15 @@ export function EditProfile() {
                 <Row>
                     <Col>
                         <Form>
-                            <p>Bio</p>
+
                             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>Example textarea</Form.Label>
+                                <Form.Label><h4>Bio</h4></Form.Label>
                                 <Form.Control as="textarea" rows={3} />
                             </Form.Group>
                         </Form>
                         <Form>
-                            <p>interes</p>
                             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                                <Form.Label>Example textarea</Form.Label>
+                                <Form.Label><h4>Interes</h4></Form.Label>
                                 <Form.Control as="textarea" rows={3} />
                             </Form.Group>
                         </Form>
@@ -75,8 +78,8 @@ export function EditProfile() {
                 </Row>
                 <Row>
                     <Col>
-                        <Button>Back</Button>
-                        <Button>Finish</Button>
+                        <button className='btnPurple'>Back</button>
+                        <button className='btnLila'>Finish</button>
                     </Col>
                 </Row>
                 <div className='copyright'>© 2020 Knou. All rights reserved</div>

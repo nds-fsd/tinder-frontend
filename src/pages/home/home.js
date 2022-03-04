@@ -15,9 +15,9 @@ export function Home() {
     return (
 
         <Container>
+            <Header />
             <div className='wrapper'>
-                <Header />
-                <Row class='container' className='extraMargin'>
+                <Row class='container' >
                     <Col className='col-7 centered'>
                         <h2>The place where <br />you know people</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
