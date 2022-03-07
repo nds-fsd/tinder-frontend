@@ -1,6 +1,6 @@
 import {getUserToken} from "./auth";
 
-export const API_URL =  window.location.hostname === 'http://localhost:3000' ? "http://localhost:5002" : "http://localhost:5002/api";
+export const API_URL =  window.location.hostname === 'know.netlify.app' ? "https://nucliotinder.herokuapp.com/api" : "http://localhost:5002/api";
 // Custom API error to throw
 function ApiError(message, data, status) {
     let response = null;
