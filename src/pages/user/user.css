@@ -1,0 +1,15 @@
+.likeUser, .messageUser {
+    background-color:#C39AF3;
+    border:none;
+    width: 80px;
+    height: 80px;
+    margin: 30px 0  0px 30px;
+    border-radius: 80px;
+    color: #fff; 
+}
+
+
+.likeUser:hover, .messageUser:hover {
+
+    color: #8C31F5; 
+}

@@ -1,0 +1,50 @@
+
+p.helloUser {
+    color: #333;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-align:center;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+p.helloUser span {
+    color:#C39AF3;
+    font-weight:900;
+    letter-spacing: 6px;
+}
+
+img.fotoPerfil {
+    width:500px;
+    height: auto;
+    border-radius: 40%;
+    margin:0 auto;
+    margin-top: 40px;
+    border: 6px solid #C39AF3;
+    padding: 0;
+}
+
+
+p.userDescription {
+    padding: 0 30px;
+    font-size: 14px;
+    color:#222;
+    letter-spacing: 2px;
+    line-height: 25px;
+    margin-top: 70px;
+    border-left: solid 6px #C39AF3;
+    
+}
+
+div.tagsUser {
+    margin: 40px 0;
+}
+
+img.Galeriaimg {
+width: 100%;
+height:auto;
+padding:0 !important;
+margin: 13px 0 !important;
+
+}

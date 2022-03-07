@@ -1,9 +1,15 @@
-import {React, useState} from 'react';
+import {React, useState, useEffect} from 'react';
 import { Col, Row, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Map from '../../components/map/map';
 import Header from '../../components/header/header';
 import BotonesFooter from '../../components/botonesFooter/botonesFooter';
+import UbicationSlider from '../../components/ubicationSlider';
+import { setUserSession, getUserToken } from '../../API/auth';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import customFetch from '../../API';
+import { isExpired, decodeToken } from 'react-jwt';
 
 
 
@@ -22,6 +28,44 @@ const [viewport, setViewport] = useState({
   pitch: 0
 });
 
+const navigate = useNavigate();
+
+
+    const token = getUserToken()
+    const myDecodedToken = decodeToken(token);
+    const isMyTokenExpired = isExpired(token);
+    const userID = myDecodedToken.id;
+
+   /* useEffect(() => {
+        if(token) navigate('/profile');
+    }, []) */
+
+   // if(token) navigate('/register/age');
+
+
+
+const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+
+
+  const onSubmit = (data) => {
+    customFetch("PATCH", `user/modify/${userID}`, {body: data})
+    .then(userSession => {
+      setUserSession(userSession);
+      console.log(data)
+      navigate("/register/about");
+    }).catch(error => {
+      // Ideally, we should show an error message to the user
+      console.log(data)
+      console.error(error);
+    });
+  };
+
+
 
 return(
 
@@ -29,7 +73,7 @@ return(
 
 <Container> 
 
-<Header paso2="activo"/>
+<Header paso2="activo" Display="yes"/>
 
   <Row>
     <Col lg="4"></Col>
@@ -38,17 +82,23 @@ return(
     <h2>We can´t wait to meet you</h2>
         <p>Please fill the detail below so that we get to <span>knou</span> you</p>
         <p>It seems that you are located in:</p>
-  </div>
+        <form onChange={handleSubmit(onSubmit)}>
+     <br />
+     <br />
+     <p> <input {...register('city')} type="text" name="city" placeholder="City" className="login" /></p>
+     <br />
+     <br /></form>
+      </div>
       <Map viewport={viewport} setViewport={setViewport} />
           <p className="texto">What is the distance range you are interested in?</p>
           <div>
-          <input type="range" name="rango" min="0" max="100" step="10" defaultValue="10" onChange={(ran) => setContador(ran.target.value)} className="sliderForm" />
+          <p><UbicationSlider /></p>
          <center> <div className="bubble">{contador} Km</div></center>
           </div>
             
   <p className="texto">You are in - location- and are interested in meeting people up to {contador} Km  away.</p>
 
-        <BotonesFooter backUrl="/registe/age" nextUrl="/register/about" />
+        <BotonesFooter backUrl="/register/age" nextUrl="/register/about" />
     </Col>
     <Col lg="4">
 

@@ -56,8 +56,9 @@ function Tags () {
         <Row>
             <Col lg="12">
     <div> {categorias.map(category => (<button className="tagUno" value={category} onClick={removeTAG} > 
-            
+    
             <a className="tagIcon"></a>{category}</button>))}
+            <br />  <br />
            <center><div className="contenedor"><a className="tagIcon"></a><input className="inputTags"  value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" name="etiquetas" disabled={categorias.length > 4}  placeholder="Type here and press enter" onKeyPress={etiquetado}  /></div></center></div>
             </Col>
         </Row>
