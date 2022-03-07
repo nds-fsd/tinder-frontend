@@ -1,0 +1,9 @@
+.buttonAction{
+    background-color: rgba(140, 49, 245);
+    border: none;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}

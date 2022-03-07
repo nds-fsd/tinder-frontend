@@ -1,0 +1,80 @@
+
+.header {
+    width:100%;
+    margin-left:0px;
+    padding-top: 15px;
+}
+
+.container {
+    max-width:100% !important;
+}
+
+a{
+    text-decoration: none;
+}
+
+.header a{
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.botonera {
+    margin: 40px 0 ;
+    text-align: center;
+}
+
+.botonera button {
+    border: none;
+    margin: 10px;
+    height:6px;
+    width: 30px;
+    border-radius: 5px;
+}
+
+.botonera button:hover {
+    background-color:#EFF0F6;
+    
+}
+
+
+button.activo  {
+    background-color:rgba(140, 49, 245);
+    border: none;
+    margin: 20px;
+    height:6px;
+    width: 30px;
+    border-radius: 5px;
+    outline: 5px solid rgba(204, 160, 255, 0.5);
+}
+
+.activo:hover {
+    outline: 5px solid rgba(204, 160, 255);
+    
+}
+
+.activo:active {
+    outline: 5px solid rgba(204, 160, 255);
+}
+
+.col-3{
+    justify-content: flex-end;
+    display: flex;
+}
+
+.btnLila {
+     border:none;
+     padding:5px 10px;
+     margin-left: 10px;
+     font-weight: 500;
+     font-size: 14px;
+     border-radius: 5px;
+    background-color:rgb(195, 154, 243);
+    color:rgba(140, 49, 245);
+    font-weight: bold;
+
+  }
+
+ 
