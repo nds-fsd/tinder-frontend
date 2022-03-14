@@ -40,10 +40,10 @@ export function Home() {
                     <Col class="col-sm" className='centertext' >
                         <h3>Create profile</h3>
                         <p className="text">Just by creating your profile at knou you will be able <br /> to know people from arround the <br /> world and find the perfect match for you!</p>
-                        <a href='#' className='purpleLink' >Get started ---></a>
+                        <a href='#' className='purpleLink' >Get started</a>
                     </Col>
                 </Row>
-                <Row class="container" className='extraMargin'>
+                <Row classNamw="container" className='extraMargin'>
                     <Col className='dropShadow'>
                         <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus quam id lectus vestibulum, ut fringilla dolor dapibus. Cras rhoncus ex tristique sem viverra faucibus. <br /> to know people from arround the <br /> world and find the perfect match for you!</p>
                     </Col>
