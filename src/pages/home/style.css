@@ -42,7 +42,7 @@ h3{
 
 
 .wrapper{
-    padding: 0% 10%;
+    padding: 10% 10% 0% 10%;
     margin: auto;
 }
 
@@ -88,6 +88,11 @@ p{
     .cardcontainer{
         flex: inherit;
     }
+}
+
+.photoUserData{
+    width: 56px;
+    height: 56px;
 }
 
 
