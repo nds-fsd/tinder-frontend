@@ -65,6 +65,10 @@ const {
           <form onSubmit={handleSubmit(onSubmit)}>
                  
                   <p><input {...register('age')}  type="number" name="age" placeholder="age" className="login" /></p>
+                  <p><input {...register('CompletAge')}  type="text" name="CompletAge" className="nonDisplay" /></p>
+                  <p><input {...register('CompletUbication')}  type="text" name="CompletUbication" className="nonDisplay" /></p>
+                  <p><input {...register('CompletAbout')}  type="text" name="CompletAbout" className="nonDisplay" /></p>
+                  <p><input {...register('CompletPhotos')}  type="text" name="CompletPhotos" className="nonDisplay" /></p>
                   <p> <input type="submit" /></p>
             </form>
  
@@ -74,7 +78,7 @@ const {
             </Col>
             <Col lg="4">
            
-        
+
             </Col>
           </Row>
         

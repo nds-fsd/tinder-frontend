@@ -25,7 +25,7 @@ function App() {
        < Route path="/profile" element={<Profile />} />
        < Route path="/user" element={<User />} />
        < Route path="/match" element={<Match />} />
-       < Route path="/registro" element={<Registro />} />
+
       </Routes>
     </div>
   );

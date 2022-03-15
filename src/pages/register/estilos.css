@@ -95,7 +95,7 @@ input[type="range"]::-moz-range-thumb {
  
 
   }
-input[type="range"]::-moz-range-track {  
+::-moz-range-track {  
   background-color: #ddd;
   border-radius: 15px;
   height:10px;
@@ -124,6 +124,19 @@ input[type="range"]::-ms-fill-upper {
  text-align: center;
   
 }
+
+
+.bubblexl {
+  width: 200px; 
+  margin: 20px 0;
+ background-color: #ded3ff;
+ padding: 5px;
+ font-size: 15px;
+ font-weight: 700;
+ color:#8C31F5;
+ border-radius: 15px;
+ text-align: center;
+ }
 
 .Center {
     text-align: center !important;
@@ -167,6 +180,57 @@ textarea.Center {
 textarea.Center {
 outline:none
 
+}
+
+.nonDisplay {
+  display:none;
+}
+
+
+input[type="file"].file {
+  background-color:#f3f3f3;
+  border:solid 3px#d3d3d3;
+  font-size: 15px;
+  padding:100px;
+  max-width: 100%;
+  align-items: center;
+  color: #333;
+
+
+}
+
+
+.css-1diafny-MuiSlider-root {
+  color: rgba(140, 49, 245)!important
+}
+
+input:required:invalid {
+  border: solid 2px rgba(140, 49, 245);
+}
+
+input:required {
+  border: solid 1px #d3d3d3;
+  
+}
+
+img.matchFoto {
+  width: 500px;
+  height: auto;
+  margin: 60px
+}
+
+button.btn-success {
+  background-color:rgba(140, 49, 245) !important;
+  border:none;
+  
+}
+
+button.btn-secondary {
+  border:none;
+}
+
+button.btn-success, button.btn-secondary {
+  font-weight: 900;
 }
 
 

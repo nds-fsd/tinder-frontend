@@ -1,4 +1,4 @@
-import { React, useEffect} from 'react';
+import { React, useState} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from '../../components/header/header';
 import BotonesFooter from '../../components/botonesFooter/botonesFooter';
@@ -7,14 +7,16 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import customFetch from '../../API';
 import { isExpired, decodeToken } from 'react-jwt';
+import Upload from '../../components/uploadImg/upload';
+import Galery from '../../components/galleryImg/gallery';
 
 
 
 
 export function RegisterPhotos() {
 
-  
-  
+
+
   const navigate = useNavigate();
 
 
@@ -52,6 +54,15 @@ const onSubmit = (data) => {
     console.error(error);
   });
 };
+
+
+const [photos, setPhotos] = useState([]);
+
+const addPhoto = (data) => {
+  setPhotos([...photos, data])
+};
+
+
      
 
     return (
@@ -69,11 +80,14 @@ const onSubmit = (data) => {
           </div>
           <br />
           <br />
-          <form  onChange={handleSubmit(onSubmit)}>
+        { /*  <form  onChange={handleSubmit(onSubmit)}>
 
-            <input {...register('photosUser')} type="file" name="photosUser" />
+           <input {...register('photosUser')} type="file" name="photosUser" className="file" />
 
-            </form>
+            </form>*/}
+
+          <Upload addPhoto={addPhoto} />
+          <Galery photos={photos} />
             
             <br />
             <br />
@@ -82,11 +96,7 @@ const onSubmit = (data) => {
             <br />
             <br />
             <br />
-            <br />
-
-
-
-                  
+            <br /> 
         
                 <BotonesFooter backUrl="/register/about" nextUrl="/login" />
             </Col>

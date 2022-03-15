@@ -13,3 +13,19 @@
 
     color: #8C31F5; 
 }
+
+.dislikeUser {
+    background-color:#a3a3a3;
+    border:none;
+    width: 80px;
+    height: 80px;
+    margin: 30px 0  0px 30px;
+    border-radius: 80px;
+    color: #fff; 
+}
+
+
+.dislikeUser:hover, .messageUser:hover {
+
+    color: #8C31F5; 
+}

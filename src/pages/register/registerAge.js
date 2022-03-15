@@ -8,31 +8,33 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import customFetch from '../../API';
 import { isExpired, decodeToken } from 'react-jwt';
+import { Select } from '@mui/material';
 
 
 
 
 
 
-export function RegisterAge(value1) {
+export function RegisterAge() {
      
-const [contador, setContador] = useState(10);
-const [value, setValue] = useState([20, 37]);
-
-
+const [contador, setContador] = useState();
+const [value1, setValue1] = useState([18,35]);
+const minEdad = value1[0];
+const maxEdad = value1[1];
+const rangeAge = value1;
 const navigate = useNavigate();
+const token = getUserToken()
+const myDecodedToken = decodeToken(token);
+const isMyTokenExpired = isExpired(token);
+const userID = myDecodedToken.id;
+const registroAge =  myDecodedToken.email;
+const Complete = localStorage.getItem('CompleteAge');
 
 
-    const token = getUserToken()
-    const myDecodedToken = decodeToken(token);
-    const isMyTokenExpired = isExpired(token);
-    const userID = myDecodedToken.id;
 
-   // if(token) navigate('/register/age');
-
-   /* useEffect(() => {
-        if(token) navigate('/profile');
-    }, []) */
+   useEffect(() => {
+        if(Complete === "yes") navigate('/register/ubication');
+    }, []) 
 
 
 const {
@@ -42,16 +44,22 @@ const {
   } = useForm();
 
 
+
+
   const onSubmit = (data) => {
-    customFetch("PATCH", `user/modify/${userID}`, {body: data})
+    customFetch("PATCH", `user/modify/${userID}`, {body: {...data, rangeAge: rangeAge }})
     .then(userSession => {
+      
       setUserSession(userSession);
-      console.log(data)
+      console.log(data);
+      localStorage.setItem("CompleteAge", "yes");
       navigate("/register/ubication");
+
     }).catch(error => {
       // Ideally, we should show an error message to the user
       console.log(data)
       console.error(error);
+      navigate("/register/ubication");
     });
   };
 
@@ -60,7 +68,8 @@ const {
         <Container> 
 
         <Header paso="activo" Display="yes"/>
-        
+   
+
           <Row>
             <Col lg="4"></Col>
             <Col lg="4">
@@ -69,36 +78,47 @@ const {
                 <p>Please fill the detail below so that we get to <span>knou</span> you</p>
               
           </div>
-          <form onChange={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onSubmit)}>
                  
-                  <p><input {...register('age')}  type="number" name="age" placeholder="age" className="login" /></p>
+                  <p><input {...register('age')}  type="number" name="age" placeholder="age" className="login" onChange={(e) =>setContador (e.target.value)} /></p>
+                  <br />
+                  <p><select {...register('gener')} name="gener" placeholder="Select your gener" className="login">
+                  <option selected>Select your gener</option>
+                  <option value="man">Male</option>
+                  <option value="girl">Female</option>
+                  <option value="other">Other...</option></select></p>
+                  <br />
+                  <p><select {...register('orientation')} name="orientation" placeholder="Select your sexual orientation" className="login">
+                  <option selected>What are you choosing</option>
+                  <option value="man">Man</option>
+                  <option value="girl">Girl</option>
+                  <option value="Other">Other...</option>
+                    </select></p>
                   <br />
                   <p>When are you birthday?</p>
                   <p><input  {...register('birthday')}  type="date" name="birthday" placeholder="Select date of your birthday" className="login" /></p>
-              
+
 
                       <br />
                       <br />
                 <p>Select your rate age</p>
+
                       <br />
-                      <br />
+                <center><p className="bubblexl"> from {minEdad} to {maxEdad} years </p></center>
                       <br />
 
-                 <p> <AgeSlider/>    </p>                 
-            
-
-            
- 
-          <p className="texto">you have $años years and want to meet people between $ and $ years</p>
+                <p> <AgeSlider value1={value1} setValue1={setValue1}/>    </p>       
+                <p className="texto">you have {contador} years and want to meet people between {minEdad} and {maxEdad} years</p>
         
                 
-                </form>
+                
 
                 <BotonesFooter backUrl="/register" nextUrl="/register/ubication" />
+                </form>
             </Col>
             <Col lg="4">
            
-        
+     
             </Col>
           </Row>
         

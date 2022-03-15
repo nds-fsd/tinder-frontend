@@ -40,18 +40,20 @@ export function Login(){
         });
       };
 
+      
+
 
     return(
         
     <Container>
          <Row>
          <Col lg="7" className="containerLeft"><center>
-             <img src={imagen} alt="" className="imagenIzquierda"/></center> </Col>
+            <a href="/"> <img src={imagen} alt="" className="imagenIzquierda"/> </a></center> </Col>
          <Col lg="5" className="containerRigth" > 
         <Row  className="loginHeader">
-            <Col lg="4"><img src={logo} alt="" /></Col>
+            <Col lg="4"><img src={logo} alt="" onClick={() => {navigate("/")}} /></Col>
             <Col lg="4"></Col>
-            <Col lg="4"><button className="signUpButton">Sign up</button></Col>
+            <Col lg="4"><button className="signUpButton" onClick={ () => {navigate("/register")}}>Sign up</button></Col>
         </Row> 
     <form onSubmit={handleSubmit(onSubmit)}> 
         <br />
@@ -60,10 +62,10 @@ export function Login(){
       <h2>Login into your account</h2>
       <br />
       <br />
-        <p> <input  {...register('email')} type="email" name="email" placeholder="Email" className="login" /></p>
-        <p> <input  {...register('password')}  type="password" name="password" placeholder="Password" className="login" /> </p>
+        <p> <input  {...register('email')} type="email" name="email" placeholder="Email" className="login" required /></p>
+        <p> <input  {...register('password')}  type="password" name="password" placeholder="Password" className="login" required/> </p>
         <p> <input type="submit" className="boton" value="Sign in" /> </p>
-        <p>Don´t have an account? <span><a href="Sing up">Sing up</a></span></p>
+        <p>Don´t have an account? <span><a href="/register">Sing up</a></span></p>
     </form>
         </Col>
         </Row>

@@ -1,27 +1,33 @@
-import { React, useReducer, useState, useEffect } from 'react';
-import { Col, Row, Container, Button, Card, Carousel } from 'react-bootstrap';
+import { React, useState, useEffect } from 'react';
+import { Col, Row, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
 import './profile.css';
 import { setUserSession, getUserToken } from '../../API/auth';
-import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import customFetch from '../../API';
 import { isExpired, decodeToken } from 'react-jwt';
 
 
 
 export function Profile() {
 
+  const navigate = useNavigate();
+  
 
-    const [ user, setUser] = useState ([]);
-       
+    const [user, setUser] = useState ({});
 
     const token = getUserToken()
     const myDecodedToken = decodeToken(token);
     const isMyTokenExpired = isExpired(token);
     const userID = myDecodedToken.id;
-    console.log(userID)
+    const tags = user.tagsUser;
+
+
+  
+
+    
+
+
 
     const imgPerfil = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
     const imgViaje1 ="https://images.pexels.com/photos/5589359/pexels-photo-5589359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
@@ -41,14 +47,14 @@ export function Profile() {
           })
           .then((json) => {
             setUser(json);
+
           })
           .catch((error) => {
             console.log(error);
           })
       }, []);
   
-
-
+      
 
     return (
 
@@ -60,31 +66,29 @@ export function Profile() {
                    <Row>
                       
     <p className="helloUser">Hello <span className="NameUser">{user.firstName}</span> ¿How are you?</p>
-                   <p> <a> edit</a></p>
                    <img className="fotoPerfil" src={imgPerfil} alt="" />
-                   
-                   <p> <a> edit</a></p>
-                   <p className="userDescription">
-                   {user.descriptionUser} 
-                   </p>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    
-                <div class="tagsUser">
-                <p> <a> edit</a></p>
-                  <p><center> <button className="tagUno" value="compras"> <a className="tagIcon"></a>Deporte</button> 
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Pasear</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Leer</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Cocinar</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Viajar</button></center> </p>
+                   <div  className="userDescription">
+                     <p><h3>Description:</h3></p>
+                   <p>{user.descriptionUser}</p>
                    </div>
+                   
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+              
+                    
+                <div className="intereses">
+                
+                    <h3>Intereses:</h3>
+                <p>
+                <center>{tags && tags.map((tag) => (<button className="tagUno"> <a className="tagIcon"></a>{tag}</button>))}</center> 
+                </p>
+                </div>
 
                    
                 <Container>
-                    <p> <a> edit</a></p>
                     <Row>
                         <Col lg={4}>
                         <img className="Galeriaimg" src={imgViaje1} alt="" /> 

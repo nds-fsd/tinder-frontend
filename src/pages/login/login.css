@@ -15,7 +15,7 @@ margin: 0 !important;
     color:#ffff; 
     }
 
-input.login{
+input.login, select.login{
     border-radius: 16px;
     height: 56px;
     width: 70%;
