@@ -1,6 +1,9 @@
 
 import {deleteStorageObject, getStorageObject, setStorageObject} from "../storage";
 
+
+
+
 export const getUserToken = () => {
     const session = getStorageObject("user-session");
     if(session){
@@ -23,6 +26,8 @@ export const setUserSession = (sessionData) =>{
 }
 
 export const removeSession = () => {
-    deleteStorageObject("user-session");
+    deleteStorageObject("user-session"); 
+    ;
+
 }
 

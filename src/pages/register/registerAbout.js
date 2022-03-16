@@ -16,6 +16,8 @@ import { isExpired, decodeToken } from 'react-jwt';
 
     const [ tag, setTag] = useState ();
     const [ mostraCategory, setMostracategory] = useState([]);
+    const [ categorias, setCategorias] = useState ([]);
+
 
     let category = [];
 
@@ -25,7 +27,7 @@ import { isExpired, decodeToken } from 'react-jwt';
         <p>{u}</p> 
         
         ))
-        console.log("prueba" + categoriaUser)
+
 
     }
 
@@ -37,6 +39,7 @@ import { isExpired, decodeToken } from 'react-jwt';
     const myDecodedToken = decodeToken(token);
     const isMyTokenExpired = isExpired(token);
     const userID = myDecodedToken.id;
+
 
    /* useEffect(() => {
         if(token) navigate('/profile');
@@ -55,14 +58,13 @@ const {
 
 
   const onSubmit = (data) => {
-    customFetch("PATCH", `user/modify/${userID}`, {body: data})
+    customFetch("PATCH", `user/modify/${userID}`, {body: {...data, tagsUser: categorias }})
     .then(userSession => {
       setUserSession(userSession);
-      console.log(data)
-      navigate("/register/about");
-    }).catch(error => {
+      navigate("/register/photos");
+    }).catch(error  => {
       // Ideally, we should show an error message to the user
-      console.log(data)
+      navigate("/register/photos"); 
       console.error(error);
     });
   };
@@ -83,13 +85,13 @@ const {
                 <p className="Center" >Plese fill the detail below so that we get to <span>knou</span> you</p>
                 <p className="Center" >Share a few words about you (psst! be creative, thats the key 😉):</p>
                  </div>
-                <form onChange={handleSubmit(onSubmit)}>
+                <form onSubmit={handleSubmit(onSubmit)}>
                 
 
                     
                <center> <textarea {...register('descriptionUser')}  class="Center" type="textarea" rows="6" cols="50" placeholder="Your description..." /></center>
                     
-</form>
+                    
                     <p className="Center texto" >You can add up to 5 interests that we will use to find the best person for you</p>
 
                    
@@ -98,15 +100,15 @@ const {
 
                         </div>
                      
-             
-                        <center>  <Tags mostraCategory={mostraCategory} setMostracategory={setMostracategory} category={category} /> </center> 
+                        <p className="Center" >Press <span>space</span> for add your tag</p>
+                        <center>  <Tags mostraCategory={mostraCategory} setMostracategory={setMostracategory} setCategorias={setCategorias} categorias={categorias} /> </center> 
                         <br />
 
                     <p className="Center texto" >Great! we have almost everything we need! Now, get pretty! Its picture time!</p>
  
 
                     <BotonesFooter backUrl="/register/ubication" nextUrl="/register/photos" />
-                
+                    </form>
                 
             </Col>
 

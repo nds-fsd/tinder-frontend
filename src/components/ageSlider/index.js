@@ -8,15 +8,15 @@ import { styled } from '@mui/material/styles';
 
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value} years`;
 }
 
 const minDistance = 10;
 
-export default function AgeSlider(value) {
+export default function AgeSlider({value1, setValue1}) {
 
     
-  const [value1, setValue1] = useState([18,35]);
+  
 
   const handleChange1 = (event, newValue, activeThumb) => {
     if (!Array.isArray(newValue)) {
@@ -40,7 +40,7 @@ export default function AgeSlider(value) {
         getAriaLabel={() => 'Minimum distance'}
         value={value1}
         onChange={handleChange1}
-        valueLabelDisplay="on"
+        valueLabelDisplay="auto"
         getAriaValueText={valuetext}
         disableSwap
         min={18}

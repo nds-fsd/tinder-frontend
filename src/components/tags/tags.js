@@ -4,11 +4,11 @@ import  './tags.css';
 
 
 
-function Tags () {
+function Tags ({setCategorias, categorias}) {
 
 
 
-     const [ categorias, setCategorias] = useState ([]);
+
     const [inputValue, setInputValue] = useState("");
     const [nomCategory, setnomCategory] = useState("");
     const [indexCategory, setIndexCategory] = useState("");
@@ -21,9 +21,9 @@ function Tags () {
     const etiquetado = (e) => {
      
 
-        if(e.key === 'Enter' && inputValue != "" && tagsTotal <= 4 ) {
+        if(e.key === ' ' && inputValue != "" && tagsTotal <= 4 ) {
             //validar inputValue > 5
-            console.log(inputValue);
+
             setCategorias([...categorias, inputValue]);
             setInputValue("");
             console.log(categorias)
@@ -35,6 +35,8 @@ function Tags () {
         }
     }
 
+ 
+
    const removeTAG = (i) =>
     {
         setnomCategory(i.target.value)
@@ -42,11 +44,11 @@ function Tags () {
         const index = categorias.indexOf(nomCategory)
         
        //categorias.splice(index,1)
-       console.log(categorias)
+     /*  console.log(categorias)
        console.log(nomCategory)
        console.log(indexCategory)
        console.log(index)
-    
+    */
     }
 
 
@@ -55,11 +57,12 @@ function Tags () {
     return(
         <Row>
             <Col lg="12">
+        
     <div> {categorias.map(category => (<button className="tagUno" value={category} onClick={removeTAG} > 
     
             <a className="tagIcon"></a>{category}</button>))}
             <br />  <br />
-           <center><div className="contenedor"><a className="tagIcon"></a><input className="inputTags"  value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" name="etiquetas" disabled={categorias.length > 4}  placeholder="Type here and press enter" onKeyPress={etiquetado}  /></div></center></div>
+           <center><div className="contenedor"><a className="tagIcon"></a><input className="inputTags"  value={inputValue} onChange={(e) => setInputValue(e.target.value)} type="text" name="etiquetas" disabled={categorias.length > 4}  placeholder="type here and press space" onKeyPress={etiquetado}  /></div></center></div>
             </Col>
         </Row>
 

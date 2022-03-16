@@ -16,9 +16,9 @@ export function RegisterUser() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const token = getUserToken()
-        if(token) navigate('/register/age');
-    }, []) 
+      const token = getUserToken()
+      if(token) navigate('/register/age');
+  }, []) 
 
     const {
         register,
@@ -32,7 +32,6 @@ export function RegisterUser() {
         customFetch("POST", "user/register", {body: data})
         .then(userSession => {
           setUserSession(userSession);
-          console.log(data)
           navigate("/register/age");
         }).catch(error => {
           // Ideally, we should show an error message to the user
@@ -47,12 +46,12 @@ export function RegisterUser() {
 <Container>
          <Row>
          <Col lg="7" className="containerLeft"><center>
-             <img src={imagen} alt="" className="imagenIzquierda"/></center> </Col>
+        <img src={imagen} alt="" className="imagenIzquierda"/> </center> </Col>
          <Col lg="5" className="containerRigth" > 
         <Row  className="loginHeader">
             <Col lg="4"><img src={logo} alt="" /></Col>
             <Col lg="4"></Col>
-            <Col lg="4"><button className="signUpButton">Sign up</button></Col>
+            <Col lg="4"><button className="signUpButton" onClick={() =>{ navigate("/login")}}>Login</button></Col>
         </Row> 
     <form onSubmit={handleSubmit(onSubmit)}> 
     <br />
@@ -61,12 +60,12 @@ export function RegisterUser() {
       <h2>Create an account</h2>
       <br />
       <br />
-        <p> <input {...register('firstName')}  type="firstName" name="firstName" placeholder="First name" className="login" /></p>
-        <p> <input {...register('lastName')}  type="text" name="lastName" placeholder="Last name" className="login" /></p>
-        <p> <input {...register('email')}  type="email" name="email" placeholder="Email" className="login" /></p>
-        <p> <input {...register('password')}  type="password" name="password" placeholder="Password" className="login" /> </p>
+        <p> <input {...register('firstName')}  type="firstName" name="firstName" placeholder="First name" className="login" required/></p>
+        <p> <input {...register('lastName')}  type="text" name="lastName" placeholder="Last name" className="login" required /></p>
+        <p> <input {...register('email')}  type="email" name="email" placeholder="Email" className="login" required /></p>
+        <p> <input {...register('password')}  type="password" name="password" placeholder="Password" className="login" required /> </p>
         <p> <input type="submit" className="boton" value="Sign in" /> </p>
-        <p>Don´t have an account? <span><a href="Sing up">Sing up</a></span></p>
+        <p>Have you got an account? <span><a href="/login">Login</a></span></p>
     </form>
         </Col>
         </Row>

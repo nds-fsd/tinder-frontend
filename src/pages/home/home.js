@@ -7,11 +7,13 @@ import './style.css';
 import Group1 from '../../assets/Group1.png';
 import girl from '../../assets/girl.png';
 import FooterUser from '../../components/footerUser/footerUser'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export function Home() {
+    const navigate = useNavigate();
     return (
 
         <Container>
@@ -21,7 +23,7 @@ export function Home() {
                     <Col className='col-7 centered'>
                         <h2>The place where <br />you know people</h2>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc odio in et, lectus sit lorem id integer.</p>
-                        <ButtonAction></ButtonAction>
+                        <ButtonAction onClick={ () => {navigate("/register")}}></ButtonAction>
                     </Col>
                     <Col className='col-5 center'>
                         <img className='col-12' src={Group1}></img>
@@ -40,7 +42,7 @@ export function Home() {
                     <Col class="col-sm" className='centertext' >
                         <h3>Create profile</h3>
                         <p className="text">Just by creating your profile at knou you will be able <br /> to know people from arround the <br /> world and find the perfect match for you!</p>
-                        <a href='#' className='purpleLink' >Get started ---></a>
+                        <a href='/register' className='purpleLink' >Get started</a>
                     </Col>
                 </Row>
                 <Row class="container" className='extraMargin'>
@@ -48,7 +50,7 @@ export function Home() {
                         <p className="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus luctus quam id lectus vestibulum, ut fringilla dolor dapibus. Cras rhoncus ex tristique sem viverra faucibus. <br /> to know people from arround the <br /> world and find the perfect match for you!</p>
                     </Col>
                     <Row>
-                        <FooterUser />
+                       
                     </Row>
                 </Row>
                 <Row>

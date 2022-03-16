@@ -1,15 +1,27 @@
-import { React, useReducer, useState } from 'react';
+import { React, useReducer, useState, useEffect } from 'react';
 import { Col, Row, Container, Button, Card, Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
 import './user.css';
 import { Favorite, ChatBubble } from '@mui/icons-material';
+import { setUserSession, getUserToken } from '../../API/auth';
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 
 export function User() {
+
+    const navigate = useNavigate();
+    const token = getUserToken()
+
+    useEffect(() => {
+        const token = getUserToken()
+        if(!token) navigate('/login');
+    }, []) 
+
+
 
     const imgPerfil = "https://images.pexels.com/photos/567452/pexels-photo-567452.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500://images.pexels.com/photos/5931204/pexels-photo-5931204.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500://images.pexels.com/photos/5785673/pexels-photo-5785673.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
     const imgViaje1 ="https://images.pexels.com/photos/5589359/pexels-photo-5589359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
@@ -35,24 +47,20 @@ export function User() {
 
                    <p><center><button className="likeUser"><Favorite sx={{ fontSize: 40}} /></button>       <button className="messageUser"><ChatBubble sx={{ fontSize: 40 }} /></button></center></p>
     
-                   <p className="userDescription">
+                    <div className="userDescription">
+                    <p><h3>Description:</h3></p>
                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ut quam nisl. Quisque porta, elit ultricies ornare mattis, leo justo laoreet magna, nec consectetur orci tellus et lacus. 
                    Integer vitae leo hendrerit, hendrerit sem eu, bibendum urna. Vestibulum quam lacus, ultricies vitae efficitur sed, egestas eu nulla. 
                    Integer porttitor, leo sed dictum posuere, felis dolor tincidunt metus, at tempus nulla risus sit amet augue. Integer tempus augue quis sodales auctor. 
-                   </p>
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+                  </div>
                     
-                <div class="tagsUser">
-
+                <div className="intereses">
+                <h3>Intereses:</h3>
                   <p><center> <button className="tagUno" value="compras"> <a className="tagIcon"></a>Deporte</button> 
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Pasear</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Leer</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Cocinar</button>
-                   <button className="tagUno" value="compras"> <a className="tagIcon"></a>Viajar</button></center> </p>
+                   <button className="tagUno"> <a className="tagIcon"></a>Pasear</button>
+                   <button className="tagUno"> <a className="tagIcon"></a>Leer</button>
+                   <button className="tagUno"> <a className="tagIcon"></a>Cocinar</button>
+                   <button className="tagUno"> <a className="tagIcon"></a>Viajar</button></center> </p>
                    </div>
 
                    

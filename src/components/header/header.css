@@ -65,15 +65,16 @@ button.activo  {
 }
 
 .btnLila {
-     border:none;
-     padding:5px 10px;
-     margin-left: 10px;
-     font-weight: 500;
-     font-size: 14px;
-     border-radius: 5px;
-    background-color:rgb(195, 154, 243);
-    color:rgba(140, 49, 245);
+    background-color:rgb(162, 103, 230);
+    border:none;
+    padding:5px 10px;
+    margin-left: 10px;
+    color:#fff;
     font-weight: bold;
+    border-radius: 5px;
+    font-size: 14px;
+    max-height: 40px;
+    
 
   }
 
