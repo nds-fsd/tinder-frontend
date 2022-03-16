@@ -1,9 +1,10 @@
-import { React, useReducer, useState, useEffect } from 'react';
-import { Col, Row, Container, Button, Card, Carousel } from 'react-bootstrap';
+import { React, useState, useEffect } from 'react';
+import { Col, Row, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
 import { Favorite, HeartBroken } from '@mui/icons-material';
 import { setUserSession, getUserToken } from '../../API/auth';
+import { isExpired, decodeToken } from 'react-jwt';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -25,16 +26,57 @@ export function Match() {
   "https://images.pexels.com/photos/708440/pexels-photo-708440.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
   "https://images.pexels.com/photos/6238186/pexels-photo-6238186.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"];
 
-
+  const token = getUserToken()
+  const myDecodedToken = decodeToken(token);
+  const isMyTokenExpired = isExpired(token);
+  const userID = myDecodedToken.id;
 
   const [usuarios1, setUsuarios] = useState ([1,2,3,4,5,6,7,8,9,0]);
-  const usuarios = ["a","tu padre","c","d","e"];
+  const [match, setMatch] = useState({});
+  const [user, setUser] = useState([])
   const [clic, setClic] = useState (0);
   let primero = imgPerfil[clic];
   const total = imgPerfil.length;
+  const genero = user.gener;
+  const city = user.city;
+
+  useEffect(() => {
+    fetch(`http://localhost:5002/api/user/${userID}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Algo ha fallado");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setUser(json);
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
 
 
-   
+  useEffect(() => {
+    fetch(`http://localhost:5002/api/user/match/girl/Barcelona`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Algo ha fallado");
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setMatch(json);
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
+
+
+
 
     return (
 
@@ -46,7 +88,7 @@ export function Match() {
                    <Row>
                       
                    <p className="helloUser"><span className="NameUser">meet</span> your half orange</p>
-             
+     
 
 <center><img src={primero} width="450" height="350" alt="" /></center>
       

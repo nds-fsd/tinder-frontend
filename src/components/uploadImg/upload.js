@@ -1,18 +1,28 @@
-import  { React, useRef } from 'react';
+import  { React, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
+
 
 const Upload = ({addPhoto}) => {
     const inputFile = useRef(null);
+
+    const [foto, setFoto] = useState()
+
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
 
     const onSubmit = () => {
  
         const files = inputFile.current.files;
         const formData = new FormData();
-        const url = "https://api.cloudinary.com/v1_1/dhgx6mcd8/image/upload";
+        const url = "https://api.cloudinary.com/v1_1/tindanuclius/image/upload";
       
         for (let i = 0; i < files.length; i++) {
           let file = files[i];
           formData.append("file", file);
-          formData.append("upload_preset", "hv3kmdau");
+          formData.append("upload_preset", "ttqpt83w");
           fetch(url, {
             method: "POST",
             header: {
@@ -21,22 +31,21 @@ const Upload = ({addPhoto}) => {
             body: formData
           })
             .then((response) => {
-                console.log(response);
-              return response.text();
+              return response.json();
             })
-            .catch((data) => {
-          
-              addPhoto(JSON.parse(data));
-              console.log(data);
+            .then((image) => {
+        
+              addPhoto(image.url);
             });
         }
     };
-
     return (
         <div>
-            <input type='file' ref={inputFile}></input>
-            <button onClick={() => onSubmit()}>Upload</button>
+          <form onChange={handleSubmit(onSubmit)}>
+            <input {...register('photosUser')} type='file' ref={inputFile}></input>
+            </form>
         </div>
+        
     )
 };
 

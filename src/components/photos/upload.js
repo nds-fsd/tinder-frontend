@@ -24,11 +24,13 @@ const Upload = ({addPhoto}) => {
           })
             .then((response) => {
                 console.log(response);
-              return response.text();
+              return response.json();
+            })
+            .then((image) => {
+              console.log(imagel.url);
             })
             .catch((data) => {
              
-              addPhoto(JSON.parse(data));
               console.log(data);
             });
         }

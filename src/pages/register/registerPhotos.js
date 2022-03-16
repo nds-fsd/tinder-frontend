@@ -19,6 +19,8 @@ export function RegisterPhotos() {
 
   const navigate = useNavigate();
 
+  const [photoUrl, setPhotoUrl] = useState({})
+
 
   const token = getUserToken()
   const myDecodedToken = decodeToken(token);
@@ -34,36 +36,41 @@ export function RegisterPhotos() {
 
 
 
-const {
-  register,
-  handleSubmit,
-  formState: { errors },
-} = useForm();
 
 
-
-const onSubmit = (data) => {
-  customFetch("PATCH", `user/modify/${userID}`, {body: data})
-  .then(userSession => {
-    setUserSession(userSession);
-    console.log(data)
-    navigate("/register/about");
-  }).catch(error => {
-    // Ideally, we should show an error message to the user
-    console.log(data)
-    console.error(error);
-  });
-};
 
 
 const [photos, setPhotos] = useState([]);
+
+console.log('photosi', photos);
 
 const addPhoto = (data) => {
   setPhotos([...photos, data])
 };
 
 
-     
+fetch('https://api.cloudinary.com/v1_1/dhgx6mcd8/image/upload')
+.then(response => response.json())
+.then(data => setPhotoUrl(JSON.stringify(data.url)));
+console.log(photoUrl)
+
+
+
+
+
+const onSubmit = (data) => {
+  customFetch("PATCH", `user/modify/${userID}`, {body: {...data, photosUser: photos }})
+  .then(userSession => {
+    setUserSession(userSession);
+    console.log(data)
+   // navigate("/register/about");
+  }).catch(error  => {
+    // Ideally, we should show an error message to the user
+    console.log(data)
+   // navigate("/register/about");
+    console.error(error);
+  });
+};
 
     return (
         <Container> 
@@ -76,7 +83,6 @@ const addPhoto = (data) => {
           <div className="Descrip">
             <h2>We can´t wait to meet you</h2>
                 <p>Please fill the detail below so that we get to <span>knou</span> you</p>
-              
           </div>
           <br />
           <br />
@@ -101,6 +107,7 @@ const addPhoto = (data) => {
                 <BotonesFooter backUrl="/register/about" nextUrl="/login" />
             </Col>
             <Col lg="4">
+           
            
         
             </Col>
