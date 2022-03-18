@@ -3,22 +3,19 @@ import { Col, Row, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
 import './profile.css';
-import { setUserSession, getUserToken } from '../../API/auth';
-import { useNavigate } from 'react-router-dom';
-import { isExpired, decodeToken } from 'react-jwt';
+import { getUserToken } from '../../API/auth';
+import { decodeToken } from 'react-jwt';
 
 
 
 export function Profile() {
 
-  const navigate = useNavigate();
+
   
 
     const [user, setUser] = useState ({});
-
     const token = getUserToken()
     const myDecodedToken = decodeToken(token);
-    const isMyTokenExpired = isExpired(token);
     const userID = myDecodedToken.id;
     const tags = user.tagsUser;
 
@@ -29,7 +26,7 @@ export function Profile() {
 
 
 
-    const imgPerfil = "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500";
+    
     const imgViaje1 ="https://images.pexels.com/photos/5589359/pexels-photo-5589359.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
     const imgViaje2 ="https://images.pexels.com/photos/3194523/pexels-photo-3194523.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
     const imgViaje3 ="https://images.pexels.com/photos/7429616/pexels-photo-7429616.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260";
@@ -54,7 +51,9 @@ export function Profile() {
           })
       }, []);
   
-      
+      const pics = user.photosUser;
+
+      const Gallery = pics.map((p) => (<Col lg={4}><img className="Galeriaimg" src={p} alt=""/></Col>))
 
     return (
 
@@ -66,7 +65,7 @@ export function Profile() {
                    <Row>
                       
     <p className="helloUser">Hello <span className="NameUser">{user.firstName}</span> ¿How are you?</p>
-                   <img className="fotoPerfil" src={imgPerfil} alt="" />
+                   <img className="fotoPerfil" src={user.picProfile} alt="" />
                    <div  className="userDescription">
                      <p><h3>Description:</h3></p>
                    <p>{user.descriptionUser}</p>
@@ -90,24 +89,10 @@ export function Profile() {
                    
                 <Container>
                     <Row>
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje1} alt="" /> 
-                           </Col>
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje2} alt="" />  
-                           </Col> 
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje3} alt="" />
-                            </Col>
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje4} alt="" />
-                            </Col>
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje5} alt="" />
-                            </Col>
-                        <Col lg={4}>
-                        <img className="Galeriaimg" src={imgViaje6} alt="" />
-                            </Col>
+                        
+                       {Gallery}
+                          
+      
                     </Row>
                 
                 </Container>       

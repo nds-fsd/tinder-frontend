@@ -2,13 +2,14 @@ import { React, useState} from 'react';
 import {Container, Row, Col} from 'react-bootstrap';
 import Header from '../../components/header/header';
 import BotonesFooter from '../../components/botonesFooter/botonesFooter';
+import Upload from '../../components/uploadImg/upload';
+import Galery from '../../components/galleryImg/gallery';
 import { setUserSession, getUserToken } from '../../API/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import customFetch from '../../API';
 import { isExpired, decodeToken } from 'react-jwt';
-import Upload from '../../components/uploadImg/upload';
-import Galery from '../../components/galleryImg/gallery';
+
 
 
 
@@ -16,16 +17,14 @@ import Galery from '../../components/galleryImg/gallery';
 export function RegisterPhotos() {
 
 
-
-  const navigate = useNavigate();
-
-  const [photoUrl, setPhotoUrl] = useState({})
-
-
   const token = getUserToken()
   const myDecodedToken = decodeToken(token);
   const isMyTokenExpired = isExpired(token);
   const userID = myDecodedToken.id;
+
+  const navigate = useNavigate();
+
+  const [photoUrl, setPhotoUrl] = useState({})
 
 
    /* useEffect(() => {
@@ -35,18 +34,20 @@ export function RegisterPhotos() {
  // if(token) navigate('/register/age');
 
 
-
-
-
-
-
 const [photos, setPhotos] = useState([]);
 
-console.log('photosi', photos);
+
 
 const addPhoto = (data) => {
   setPhotos([...photos, data])
 };
+
+const [ perfil, setPerfil ] = useState("");
+
+
+
+
+const pics = photos.map((p) => (<Col><div><img width="100%" src={p} alt="" /><p><button className="picProfile" onClick={() => setPerfil(p)}>Select for profile</button></p></div></Col>));
 
 
 fetch('https://api.cloudinary.com/v1_1/dhgx6mcd8/image/upload')
@@ -56,10 +57,15 @@ console.log(photoUrl)
 
 
 
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+} = useForm();
 
 
 const onSubmit = (data) => {
-  customFetch("PATCH", `user/modify/${userID}`, {body: {...data, photosUser: photos }})
+  customFetch("PATCH", `user/modify/${userID}`, {body: {photosUser: photos, picProfile: perfil}})
   .then(userSession => {
     setUserSession(userSession);
     console.log(data)
@@ -67,10 +73,11 @@ const onSubmit = (data) => {
   }).catch(error  => {
     // Ideally, we should show an error message to the user
     console.log(data)
-   // navigate("/register/about");
+  //  navigate("/register/about");
     console.error(error);
   });
 };
+
 
     return (
         <Container> 
@@ -85,19 +92,24 @@ const onSubmit = (data) => {
                 <p>Please fill the detail below so that we get to <span>knou</span> you</p>
           </div>
           <br />
+
+          <Row>
+             {pics}
+          </Row>  
           <br />
-        { /*  <form  onChange={handleSubmit(onSubmit)}>
+          <br />
+          <br />
+          <br />
 
-           <input {...register('photosUser')} type="file" name="photosUser" className="file" />
+          <Upload addPhoto={addPhoto} photos={photos} />
+         
+          <button className="botonGuardado" onClick={handleSubmit(onSubmit)}>Save photos</button>
+            <p></p>
+            <br />
+            <br />
 
-            </form>*/}
 
-          <Upload addPhoto={addPhoto} />
-          <Galery photos={photos} />
             
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />

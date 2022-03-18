@@ -1,11 +1,18 @@
-import  { React, useRef, useState } from 'react';
+import  { React, useRef} from 'react';
 import { useForm } from 'react-hook-form';
+import customFetch from '../../API';
+import { isExpired, decodeToken } from 'react-jwt';
+import { setUserSession, getUserToken } from '../../API/auth';
 
 
-const Upload = ({addPhoto}) => {
+const Upload = ({addPhoto, photos}) => {
     const inputFile = useRef(null);
 
-    const [foto, setFoto] = useState()
+    const token = getUserToken()
+  const myDecodedToken = decodeToken(token);
+  const isMyTokenExpired = isExpired(token);
+  const userID = myDecodedToken.id;
+
 
     const {
       register,
@@ -39,10 +46,24 @@ const Upload = ({addPhoto}) => {
             });
         }
     };
+
+    const onSave = (data) => {
+      customFetch("PATCH", `user/modify/${userID}`, {body: {photosUser: photos}})
+      .then(userSession => {
+        setUserSession(userSession);
+        console.log(data)
+       // navigate("/register/about");
+      }).catch(error  => {
+        // Ideally, we should show an error message to the user
+        console.log(data)
+      //  navigate("/register/about");
+        console.error(error);
+      });
+    };
     return (
         <div>
           <form onChange={handleSubmit(onSubmit)}>
-            <input {...register('photosUser')} type='file' ref={inputFile}></input>
+            <input {...register('photosUser')} type='file' ref={inputFile} className="file" multiple></input>
             </form>
         </div>
         
