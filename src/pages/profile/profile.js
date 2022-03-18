@@ -99,11 +99,6 @@ export function Profile() {
                             
                    </Row>
 
-                   
-
-
-                   
-                
                </Col>
                <Col lg="3"></Col>
            </Row>
