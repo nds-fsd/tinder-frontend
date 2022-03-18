@@ -16,7 +16,7 @@ const Galery = ({photos}) => {
         <div>
             {photos.map(photo => (
     
-                <div> {alert(photo.public_id)}
+                <div>
                     <img src={photo.url} width="100"/>
                     <AdvancedImage 
                         cldImg={cld.image(photo.public_id).resize(fill().width(800))} 

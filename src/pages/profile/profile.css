@@ -16,12 +16,14 @@ p.helloUser span {
 }
 
 img.fotoPerfil {
-    width:500px;
+    width:350px;
     height: auto;
     margin:0 auto;
     margin-top: 40px;
     border: 6px solid #C39AF3;
     padding: 0;
+    height:auto;
+    max-height: 450px;
 }
 
 
@@ -84,3 +86,32 @@ div.intereses {
     margin-bottom: 40px
 }
 
+
+
+h3.NombreMatch {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color:#C39AF3;
+    font-weight: 700;
+    margin-top:15px;
+
+}
+
+button.picProfile {
+    width:100%;
+    height:50px;
+    border: solid 1px #d3d3d3;
+    background-color:#f3f3f3;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+button.picProfile:hover {
+    width:100%;
+    height:50px;
+    border: solid 1px #C39AF3;
+    background-color:#C39AF3;
+
+}

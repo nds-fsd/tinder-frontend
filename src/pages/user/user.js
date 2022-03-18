@@ -1,11 +1,10 @@
-import { React, useReducer, useState, useEffect } from 'react';
-import { Col, Row, Container, Button, Card, Carousel } from 'react-bootstrap';
+import { React, } from 'react';
+import { Col, Row, Container } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../components/header/header';
 import './user.css';
 import { Favorite, ChatBubble } from '@mui/icons-material';
-import { setUserSession, getUserToken } from '../../API/auth';
-import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -13,13 +12,9 @@ import { useNavigate } from 'react-router-dom';
 
 export function User() {
 
-    const navigate = useNavigate();
-    const token = getUserToken()
+   
 
-    useEffect(() => {
-        const token = getUserToken()
-        if(!token) navigate('/login');
-    }, []) 
+
 
 
 
@@ -56,11 +51,12 @@ export function User() {
                     
                 <div className="intereses">
                 <h3>Intereses:</h3>
-                  <p><center> <button className="tagUno" value="compras"> <a className="tagIcon"></a>Deporte</button> 
+                  <center> 
+                    <button className="tagUno"> <a className="tagIcon"></a>Deporte</button> 
                    <button className="tagUno"> <a className="tagIcon"></a>Pasear</button>
                    <button className="tagUno"> <a className="tagIcon"></a>Leer</button>
                    <button className="tagUno"> <a className="tagIcon"></a>Cocinar</button>
-                   <button className="tagUno"> <a className="tagIcon"></a>Viajar</button></center> </p>
+                   <button className="tagUno"> <a className="tagIcon"></a>Viajar</button></center> 
                    </div>
 
                    

@@ -1,5 +1,5 @@
-import {React,useState, useEffect} from 'react';
-import { Row, Col, Container, Form} from 'react-bootstrap';
+import {React,useState} from 'react';
+import { Row, Col, Container} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './estilos.css';
 import BotonesFooter from '../../components/botonesFooter/botonesFooter';
@@ -9,12 +9,12 @@ import { setUserSession, getUserToken } from '../../API/auth';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import customFetch from '../../API';
-import { isExpired, decodeToken } from 'react-jwt';
+import { decodeToken } from 'react-jwt';
 
 
  export function RegisterAbout() {
 
-    const [ tag, setTag] = useState ();
+  
     const [ mostraCategory, setMostracategory] = useState([]);
     const [ categorias, setCategorias] = useState ([]);
 
@@ -37,7 +37,6 @@ import { isExpired, decodeToken } from 'react-jwt';
 
     const token = getUserToken()
     const myDecodedToken = decodeToken(token);
-    const isMyTokenExpired = isExpired(token);
     const userID = myDecodedToken.id;
 
 
@@ -52,7 +51,7 @@ import { isExpired, decodeToken } from 'react-jwt';
 const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors},
   } = useForm();
 
 
